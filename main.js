@@ -1,47 +1,40 @@
-const rockBttn = document.getElementById("rock");
-const sciBttn = document.getElementById("scissor");
-const paperBttn = document.getElementById("paper");
-
+const resetBttn = document.getElementById("reset");
+const buttons = document.querySelectorAll(".button");
+const result = document.getElementById("result");
 //Game variables
 let pScore = 0;
 let cScore = 0;
 let rWinner = "";
-let gWinner = "";
+let playing = false;
+const options = ["ROCK", "PAPER", "SCISSORS"];
 
 //Game Variables
 
 //Buttons
-rockBttn.addEventListener('click', (e) => {
-    var val = e.target.value;
-    triggerEvent(val);
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        var val = button.querySelector("img").alt;
+        playing = true;
+        triggerEvent(val);
+    })
 })
 
-sciBttn.addEventListener('click', (e) => {
-    var val = e.target.value;
-    triggerEvent(val);
+resetBttn.addEventListener("click", () => {
+    pScore = 0;
+    cScore = 0;
+    rWinner = "";
+    result.textContent = "";
+    playing = false;
+    resetBttn.style.display = "none";
+    updateHTML();
 })
 
-paperBttn.addEventListener('click', (e) => {
-    var val = e.target.value;
-    triggerEvent(val);
-})
 //Buttons
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function getChoice(val) {
-    switch (val) {
-        case 0:
-            return "ROCK";
-        case 1:
-            return "PAPER";
-        case 2:
-            return "SCISSORS";
-    }
 }
 
 function updateScore(selectedValue, compValue) {
@@ -54,7 +47,7 @@ function updateScore(selectedValue, compValue) {
         (selectedValue === 'PAPER' && compValue === 'ROCK')
     ) {
         pScore++
-        rWinner = 'player'
+        rWinner = 'Player'
     }
     if (
         (compValue === 'ROCK' && selectedValue === 'SCISSORS') ||
@@ -62,25 +55,31 @@ function updateScore(selectedValue, compValue) {
         (compValue === 'PAPER' && selectedValue === 'ROCK')
     ) {
         cScore++
-        rWinner = 'computer'
+        rWinner = 'Computer'
     }
 }
 
 function triggerEvent(selectedValue) {
     if (!isOver(pScore, cScore)) {
         //Normalizing data
-        selectedValue = (parseInt(selectedValue, 10))
-        selectedValue = getChoice(selectedValue);
         var compVal = getRandomInt(0, 2);
-        compVal = getChoice(compVal);
-
+        compVal = options[compVal];
         //Game logic
         updateScore(selectedValue, compVal);
         updateHTML();
-        console.log(selectedValue, compVal);
-        console.log(pScore, cScore, rWinner);
+        if (isOver(pScore, cScore)) {
+            var winner = getWinner();
+            result.textContent = `${winner} has won the game.`;
+            resetBttn.style.display = "inline-block";
+        }
+    }
+}
+
+function getWinner() {
+    if (pScore === 5) {
+        return "Player"
     } else {
-        console.log("Game Over")
+        return "Computer"
     }
 }
 
@@ -91,6 +90,13 @@ function isOver(pScore, cScore) {
 function updateHTML() {
     const playerScore = document.getElementById("pScore");
     const compScore = document.getElementById("cScore");
-    playerScore.textContent = `Player: ${pScore}`;
-    compScore.textContent = `Enemy: ${cScore}`
+    playerScore.textContent = `${pScore}`;
+    compScore.textContent = `${cScore}`;
+    if (playing == true) {
+        if (rWinner != "tie") {
+            result.textContent = `${rWinner} won the round..`;
+        } else {
+            result.textContent = `There was a tie...`;
+        }
+    }
 }

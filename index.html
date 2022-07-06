@@ -7,36 +7,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
-    <title>RPS</title>
+    <title>TOP - Rock, Paper and Scissors</title>
 </head>
 
 <body>
-    <header>
-        <h1>Title</h1>
-    </header>
     <div class="container">
-        <div class="players">
-            <h3>Something here</h3>
-            <p>Best of 5</p>
-            <div class="player-fields">
-                <div class="player">
-                    <p id="pScore">Player: 0
-
-                    </p>
-                </div>
-                <div class="computer">
-                    <p id="cScore">Enemy: 0
-                    </p>
-                </div>
+        <div class="intro">
+            <div class="title">
+                This is my Title
             </div>
-            <div class="choices">
-                <button id="rock" value=0>Rock</button>
-                <button id="paper" value=1>Ppaer</button>
-                <button id="scissor" value=2>Scissor</button>
+            <div class="rules">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ea ipsa necessitatibus quae
+                    nostrum voluptates voluptas neque explicabo, vel voluptatem beatae culpa dolore ab autem iusto
+                    architecto deserunt aliquid officia.
+                </p>
             </div>
         </div>
+        <div class="game-container">
+            <div class="options">
+                <div class="button">
+                    <img src="./imgs/rock.png" alt="ROCK">
+                </div>
+                <div class="button">
+                    <img src="./imgs/paper.png" alt="PAPER">
+                </div>
+                <div class="button">
+                    <img src="./imgs/scissor.png" alt="SCISSORS">
+                </div>
+            </div>
+            <div class="score-container">
+                <div class="score-label">
+                    <p>You</p>
+                    <p>Enemy</p>
+                </div>
+                <div class="score-value">
+                    <div id="pScore" class="score">0</div>
+                    <div id="cScore" class="score">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="winner" id="result"></div>
     </div>
-    <footer>Copyright</footer>
+    <div class="restart">
+        <button id="reset">
+            Play Again
+        </button>
+    </div>
+    <div class="footer">
+        <p>jmrdfG github</p>
+    </div>
 </body>
 <script src="main.js"></script>
 

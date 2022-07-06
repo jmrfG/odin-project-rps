@@ -1,37 +1,93 @@
 body {
-    display: block;
-    
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
+    color: white;
+    background-color: black;
+    font-size: x-large;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-header {
-    text-align: center;
-}
 
 .container {
+    display: flex;
+    flex-direction: column ;
+    width: 800px;
+    height: auto;
     text-align: center;
-    border: 1px solid red;
     justify-content: center;
+    margin-top: 40px;
 }
 
-.player-fields, .choices {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.intro {
     margin: 20px;
 }
 
-.player-fields div {
-    margin: 30px;
+.game-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.choices button {
-    margin: 30px;
-}
-
-footer {
-    justify-content: end;
+.options {
+    display: flex;
+    flex-direction: row;
     text-align: center;
+    justify-content: center;
+}
+
+.button {
+    margin: 30px;
+    background-color: black;
+    color: black;
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: scale(1.2);
+}
+
+.button img {
+    width: 150px;
+}
+
+.score-label, .score-value{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+
+/*May change HTML structure or CSS attributes to merge score-label and score-value
+into one big thing.
+*/
+.score-label p, .score-value div {
+    margin: 20px;
+}
+
+.score-value div {
+    text-align: center;
+}
+
+.restart {
+    margin: 20px;
+}
+
+#reset {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black; /* Green */
+    border-radius: 10px;
+    border: 1px solid white;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    display: none;
+}
+
+.footer {
+    margin-top: 60px;
+
 }
